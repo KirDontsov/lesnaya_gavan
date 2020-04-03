@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
+import { StaticRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { routes } from "./routes";
 
@@ -8,6 +8,8 @@ import Burger from "./mob_components/Burger";
 import Footer from "./components/Footer";
 import Shutter from "./mob_components/Shutter";
 import "./scss/App.scss";
+
+const context = {};
 
 class App extends Component {
 	componentDidMount() {
@@ -48,25 +50,29 @@ class App extends Component {
 
 		if (isMobile) {
 			return (
-				<Fragment>
-					<div className="wrapper">
-						<Burger routes={routes.filter(route => route.isMobile)} />
-						{/* <h1>Mobile</h1> */}
-						{renderSwitch()}
-						<Footer routes={routes.filter(route => route.isFooter)} />
-					</div>
-				</Fragment>
+				<Router location={req.url} context={context}>
+					<Fragment>
+						<div className="wrapper">
+							<Burger routes={routes.filter(route => route.isMobile)} />
+							{/* <h1>Mobile</h1> */}
+							{renderSwitch()}
+							<Footer routes={routes.filter(route => route.isFooter)} />
+						</div>
+					</Fragment>
+				</Router>
 			);
 		} else {
 			return (
-				<Fragment>
-					<div className="wrapper">
-						<Shutter />
-						<NavigationBar routes={routes.filter(route => route.isNavBar)} />
-						{renderSwitch()}
-						<Footer routes={routes.filter(route => route.isFooter)} />
-					</div>
-				</Fragment>
+				<Router location={req.url} context={context}>
+					<Fragment>
+						<div className="wrapper">
+							<Shutter />
+							<NavigationBar routes={routes.filter(route => route.isNavBar)} />
+							{renderSwitch()}
+							<Footer routes={routes.filter(route => route.isFooter)} />
+						</div>
+					</Fragment>
+				</Router>
 			);
 		}
 	}

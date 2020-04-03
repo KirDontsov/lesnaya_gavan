@@ -1,4 +1,4 @@
-import React, { Fragment, Suspense, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Fade from "react-reveal/Fade";
 import axios from "axios";
 

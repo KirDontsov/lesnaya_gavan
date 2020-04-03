@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Fade from "react-reveal/Fade";
 import axios from "axios";
 import Helmet from "react-helmet";
@@ -58,13 +58,11 @@ const Galery = ({ scrollPosition }) => {
 					<h1>Галерея</h1>
 
 					<div className="colCenter">
-						<Suspense fallback={<h2>Загрузка...</h2>}>
-							{!loading
-								? currentPhotos.map((img, i) => {
-										return <LazyImage image={img} key={i} alt={img.alt} scrollPosition={scrollPosition} />;
-								  })
-								: null}
-						</Suspense>
+						{!loading
+							? currentPhotos.map((img, i) => {
+									return <LazyImage image={img} key={i} alt={img.alt} scrollPosition={scrollPosition} />;
+							  })
+							: null}
 
 						<div className="pagination">
 							{!loading ? (
