@@ -2,6 +2,7 @@ import Home from "./pages/Home";
 import Galery from "./pages/Galery";
 import Err from "./pages/Err";
 import Blog from "./pages/Blog";
+import { fetchPopularRepos } from "./api";
 
 // import AboutMob from "./pages_mob/AboutMob";
 // import ContactsMob from "./pages_mob/ContactsMob";
@@ -15,7 +16,8 @@ export const routes = [
 		path: "/",
 		name: " ",
 		className: "logo",
-		component: Home
+		component: Home,
+		fetchInitialData: (path = "") => fetchPopularRepos(path.split("/").pop())
 	},
 	{
 		id: 2,

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { routes } from "./routes";
@@ -7,6 +7,7 @@ import NavigationBar from "./components/NavBar";
 import Burger from "./mob_components/Burger";
 import Footer from "./components/Footer";
 import Shutter from "./mob_components/Shutter";
+import Grid from "./Grid";
 import "./scss/App.scss";
 
 class App extends Component {
@@ -48,25 +49,23 @@ class App extends Component {
 
 		if (isMobile) {
 			return (
-				<Fragment>
-					<div className="wrapper">
-						<Burger routes={routes.filter(route => route.isMobile)} />
-						{/* <h1>Mobile</h1> */}
-						{renderSwitch()}
-						<Footer routes={routes.filter(route => route.isFooter)} />
-					</div>
-				</Fragment>
+				<div className="wrapper">
+					<Burger routes={routes.filter(route => route.isMobile)} />
+					{/* <h1>Mobile</h1> */}
+					{renderSwitch()}
+					<Footer routes={routes.filter(route => route.isFooter)} />
+					<Grid data={this.props.data} />
+				</div>
 			);
 		} else {
 			return (
-				<Fragment>
-					<div className="wrapper">
-						<Shutter />
-						<NavigationBar routes={routes.filter(route => route.isNavBar)} />
-						{renderSwitch()}
-						<Footer routes={routes.filter(route => route.isFooter)} />
-					</div>
-				</Fragment>
+				<div className="wrapper">
+					<Shutter />
+					<NavigationBar routes={routes.filter(route => route.isNavBar)} />
+					{renderSwitch()}
+					<Footer routes={routes.filter(route => route.isFooter)} />
+					<Grid data={this.props.data} />
+				</div>
 			);
 		}
 	}

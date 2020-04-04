@@ -23,7 +23,7 @@ const store = init({
 ReactDOM.hydrate(
 	<Provider store={store}>
 		<BrowserRouter>
-			<App />
+			<App data={window.__INITIAL_DATA__} />
 		</BrowserRouter>
 	</Provider>,
 	document.getElementById("root")
