@@ -1,11 +1,7 @@
 import Home from "./pages/Home";
 import Galery from "./pages/Galery";
-import Err from "./pages/Err";
+import NotFound from "./pages/NotFound";
 import Blog from "./pages/Blog";
-import { fetchPopularRepos } from "./api";
-
-// import AboutMob from "./pages_mob/AboutMob";
-// import ContactsMob from "./pages_mob/ContactsMob";
 
 export const routes = [
 	// --------------------------- isNavBar
@@ -16,8 +12,7 @@ export const routes = [
 		path: "/",
 		name: " ",
 		className: "logo",
-		component: Home,
-		fetchInitialData: (path = "") => fetchPopularRepos(path.split("/").pop())
+		component: Home
 	},
 	{
 		id: 2,
@@ -46,25 +41,14 @@ export const routes = [
 		component: Blog
 	},
 
-	// --------------------------- isMobile
-	{
-		id: 1,
-		isMobile: true,
-		isExact: true,
-		path: "/",
-		name: "Рти-Торг",
-		className: "logo",
-		component: Home
-	},
-
 	// --------------------------- isFooter
 
 	{
-		id: 6,
+		id: 5,
 		isFooter: false,
 		isExact: true,
 		path: "/",
-		name: "Рти-Торг",
+		name: "  ",
 		className: "logo",
 		component: Home
 	},
@@ -73,9 +57,10 @@ export const routes = [
 
 	// --------------------------- 404
 	{
-		id: 18,
+		id: 6,
 		isExact: true,
-		component: Err,
+		name: "404",
+		component: NotFound,
 		status: 404
 	}
 ];

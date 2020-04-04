@@ -7,7 +7,7 @@ import NavigationBar from "./components/NavBar";
 import Burger from "./mob_components/Burger";
 import Footer from "./components/Footer";
 import Shutter from "./mob_components/Shutter";
-import Grid from "./Grid";
+
 import "./scss/App.scss";
 
 class App extends Component {
@@ -40,10 +40,9 @@ class App extends Component {
 		}
 		const renderSwitch = () => (
 			<Switch>
-				{routes.map(route => {
-					const component = route.component;
-					return <Route key={route.id} exact={route.isExact} path={route.path} component={component} status={route.status} />;
-				})}
+				{routes.map(route => (
+					<Route key={route.name} exact={route.isExact} path={route.path} component={route.component} status={route.status} />
+				))}
 			</Switch>
 		);
 
@@ -51,10 +50,8 @@ class App extends Component {
 			return (
 				<div className="wrapper">
 					<Burger routes={routes.filter(route => route.isMobile)} />
-					{/* <h1>Mobile</h1> */}
 					{renderSwitch()}
 					<Footer routes={routes.filter(route => route.isFooter)} />
-					<Grid data={this.props.data} />
 				</div>
 			);
 		} else {
@@ -64,7 +61,6 @@ class App extends Component {
 					<NavigationBar routes={routes.filter(route => route.isNavBar)} />
 					{renderSwitch()}
 					<Footer routes={routes.filter(route => route.isFooter)} />
-					<Grid data={this.props.data} />
 				</div>
 			);
 		}

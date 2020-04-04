@@ -1,15 +1,12 @@
-import fetch from "isomorphic-fetch";
+import "isomorphic-fetch";
 
-export function fetchPopularRepos(language = "all") {
-	const encodedURI = encodeURI(
-		`https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`
-	);
-
-	return fetch(encodedURI)
-		.then(data => data.json())
-		.then(repos => repos.items)
-		.catch(error => {
-			console.warn(error);
-			return null;
+export default resourceType => {
+	return fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+		.then(res => {
+			return res.json();
+		})
+		.then(data => {
+			// only keep 10 first results
+			return data.filter((_, idx) => idx < 10);
 		});
-}
+};
